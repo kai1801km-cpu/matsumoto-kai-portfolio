@@ -1,0 +1,667 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   1. リセット & ベーススタイル
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   2. 固定ヘッダー & フッター (PCデフォルト)
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  top: 16px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.site-header a,
+.site-header span {
+  pointer-events: auto;
+}
+
+/* 左上：ブランド */
+.brand {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  background-color: #ffffff;
+  padding: 6px 12px;
+  margin-top: -6px;
+  margin-left: -12px;
+}
+
+.name {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: lowercase;
+}
+
+.name a {
+  text-transform: lowercase;
+  color: inherit;
+}
+
+.role {
+  color: #888888;
+  font-size: 10px;
+}
+
+/* 右上：ナビゲーション */
+.site-nav {
+  display: flex;
+  gap: 8px;
+  margin-top: -6px;
+  margin-right: -12px;
+}
+
+.site-nav a {
+  display: inline-block;
+  background-color: #ffffff;
+  padding: 6px 12px;
+  color: #000000;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  background-color: #111111;
+  color: #ffffff;
+}
+
+/* フッター (PC) */
+.site-footer {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 100;
+  pointer-events: none;
+  background-color: transparent;
+}
+
+.site-footer a,
+.site-footer span {
+  pointer-events: auto;
+}
+
+.footer-left {
+  display: flex;
+  align-items: flex-end;
+}
+
+.copyright-text {
+  font-size: 10px;
+  color: #666666;
+  letter-spacing: 0.08em;
+  background-color: transparent !important; /* 白枠消去 */
+  padding: 0 !important;
+  display: inline-block;
+}
+
+.footer-right {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.contact-link {
+  font-size: 30px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: #111111;
+  background-color: rgba(255, 255, 255, 0.85); /* ★ 85%不透明の半透明白ボックス */
+  backdrop-filter: blur(4px);                  /* ★（オプション）背景をほんのりぼかす */
+  -webkit-backdrop-filter: blur(4px);
+  padding: 6px 12px;
+  display: inline-block;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.contact-link:hover {
+  background-color: #111111;
+  color: #ffffff;
+}
+
+/* 画面左下に固定配置する戻るボタン (← BACK TO ARCHIVE) */
+.fixed-back-link {
+  position: fixed;
+  bottom: 60px; /* PC画面の左下（フッターの上） */
+  left: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #000000;
+  z-index: 100;
+  transition: opacity 0.2s ease;
+  pointer-events: auto;
+  background-color: transparent;
+  padding: 0;
+}
+
+.fixed-back-link:hover {
+  opacity: 0.5;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   3. トップページ：ビジュアルアーカイブ (index.html)
+   ========================================================================== */
+.gallery-container {
+  padding: 100px 20px 80px 20px;
+  min-height: 100vh;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 40px 24px;
+}
+
+.project-item a {
+  display: block;
+}
+
+.image-wrapper {
+  width: 100%;
+  background-color: transparent;
+  overflow: hidden;
+  margin-bottom: 8px;
+  line-height: 0;
+}
+
+.image-wrapper img,
+.image-wrapper video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: opacity 0.3s ease, transform 0.4s ease;
+}
+
+.project-item a:hover img,
+.project-item a:hover video {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
+
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #111111;
+  margin-top: 6px;
+}
+
+.project-category { color: #888888; }
+.project-item.span-2 { grid-column: span 2; }
+.project-item.span-3 { grid-column: span 3; }
+.project-item.full   { grid-column: 1 / -1; }
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   4. プロジェクト一覧ページ (projects.html)
+   ========================================================================== */
+.projects-page {
+  padding-top: 100px;
+  padding-bottom: 120px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.page-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-bottom: 40px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px 24px;
+}
+
+.project-card {
+  display: block;
+  color: #000000;
+}
+
+.project-card:hover { opacity: 0.7; }
+
+.card-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  margin-bottom: 12px;
+  background-color: #f5f5f5;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+.card-sub {
+  font-size: 10px;
+  color: #666666;
+  letter-spacing: 0.05em;
+}
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   5. 作品詳細ページ (project-01.html 等)
+   ========================================================================== */
+.project-detail {
+  padding-top: 100px;
+  padding-bottom: 120px;
+  padding-left: 30px;  /* ★ 画面幅を縮めても左右キワまで攻めないための安全余白 */
+  padding-right: 30px; /* ★ */
+  max-width: 1000px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.detail-title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.detail-subtitle {
+  font-size: 11px;
+  color: #666666;
+  letter-spacing: 0.08em;
+}
+
+.detail-meta dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 16px;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+.detail-meta dt { font-weight: 700; color: #999999; }
+.detail-meta dd { margin: 0; }
+
+.detail-description {
+  max-width: 500px;
+  font-size: 12px;
+  line-height: 2;
+  font-weight: 300;
+  margin-bottom: 60px;
+}
+
+.detail-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+.gallery-item img,
+.gallery-item video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gallery-text {
+  max-width: 480px;
+  margin: 60px auto;
+  font-size: 18px;
+  line-height: 1.8;
+  font-weight: 400;
+  text-align: center;
+  color: #111111;
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 769px) {
+  /* PC表示の作品詳細ページでのみ、コンタクトリンクを右寄せ・縦並び・15pxにする */
+  .project-detail ~ .site-footer .footer-right,
+  body.page-project-detail .site-footer .footer-right {
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    gap: 6px !important;
+  }
+
+  .project-detail ~ .site-footer .contact-link,
+  body.page-project-detail .site-footer .contact-link {
+    font-size: 15px !important; /* PC版のみ15px */
+    padding: 4px 10px !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   6. ABOUT モーダル (ポップアップ)
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.modal-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  border: 1px dashed #000000;
+  padding: 40px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  border-radius: 0;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 11px;
+  font-weight: 300;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+}
+
+.about-inner h2 {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-bottom: 24px;
+}
+
+.about-statement {
+  font-size: 12px;
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 32px;
+}
+
+.about-cv h3 {
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.about-cv ul {
+  list-style: none;
+  padding: 0;
+  font-size: 11px;
+  font-weight: 300;
+}
+
+.about-cv li { margin-bottom: 6px; }
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   7. スマホ・モバイル表示専用の調整 (768px以下)
+   ========================================================================== */
+@media (max-width: 768px) {
+
+  /* --- 1. 共通左右余白の統一 --- */
+  .site-header,
+  .site-footer,
+  .project-detail,
+  .projects-page,
+  .gallery-container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box;
+  }
+
+  /* --- 2. スマホ用ヘッダー（上下中央揃え & 白帯あり） --- */
+  .site-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    padding: 12px 16px !important;
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #f0f0f0;
+    align-items: center !important;
+    z-index: 1000 !important;
+  }
+
+  .brand {
+    background-color: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .site-nav {
+    margin: 0 !important;
+    align-items: center !important;
+  }
+
+  .site-nav a {
+    background-color: transparent !important;
+    padding: 0 !important;
+  }
+
+  /* --- 3. メインコンテンツの上余白 --- */
+  .project-detail,
+  .projects-page {
+    padding-top: 110px !important;
+    padding-bottom: 160px !important;
+  }
+
+  /* --- 4. 固定戻るボタン (← BACK TO ARCHIVE) --- */
+  .fixed-back-link {
+    position: fixed !important;
+    top: auto !important;
+    bottom: 42px !important; /* コンタクトリンクの上 */
+    left: 16px !important;
+    transform: none !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    background-color: transparent !important;
+    padding: 0 !important;
+    z-index: 101;
+  }
+
+  /* --- 5. スマホ用フッター（固定表示・コピーライトが一番下） --- */
+  .site-footer {
+    position: fixed !important;
+    bottom: 12px !important;
+    left: 16px !important;
+    right: 16px !important;
+    padding: 0 !important;
+    background-color: transparent !important;
+    display: flex !important;
+    flex-direction: column-reverse !important; /* 表示順逆転 */
+    align-items: stretch !important;
+    gap: 8px !important;
+    pointer-events: none !important;
+  }
+
+  /* メールとインスタ（縦並び・右寄せ・白ボックス） */
+  .footer-right {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    gap: 6px !important;
+    width: 100% !important;
+  }
+
+
+  .contact-link {
+    font-size: 11px !important;
+    font-weight: 300 !important;
+    background-color: rgba(255, 255, 255, 0.85) !important; /* ★ スマホも半透明白 */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 6px 12px !important;
+    letter-spacing: 0.08em !important;
+    display: inline-block !important;
+  }
+
+
+
+  /* コピーライト（一番最下部・中央・文字のみ） */
+  .footer-left {
+    width: 100% !important;
+    text-align: center !important;
+    margin-top: 4px !important;
+  }
+
+  .copyright-text {
+    font-size: 10px !important;
+    color: #666666 !important;
+    letter-spacing: 0.08em !important;
+    background-color: transparent !important;
+    padding: 0 !important;
+    display: inline-block !important;
+  }
+
+  /* --- 6. 本文・ギャラリー調整 --- */
+  .gallery-container {
+    padding-top: 90px !important;
+  }
+
+  .gallery-text {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 10px !important;
+    font-size: 14px !important;
+    line-height: 1.7 !important;
+  }
+
+  .project-item.span-2,
+  .project-item.span-3 {
+    grid-column: span 1 !important;
+  }
+}

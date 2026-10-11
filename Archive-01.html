@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+  <title>matsumoto kai</title>
+
+  
+  <!-- ファビコン設定 -->
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 固定ヘッダー -->
+  <header class="site-header">
+    <div class="brand">
+      <h1 class="name"><a href="index.html">matsumoto kai</a></h1>
+      <span class="role">ARCHITECTURE / URBANISM</span>
+    </div>
+    <nav class="site-nav">
+      <a href="#about">ABOUT</a>
+      <a href="projects.html">PROJECTS</a>
+    </nav>
+  </header>
+
+  <!-- 画面左下に常時固定する戻るボタン -->
+  <a href="index.html" class="fixed-back-link">← BACK TO ARCHIVE</a>
+
+
+                            <!--触る必要なし-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- 作品詳細メインコンテンツ -->
+  <main class="project-detail">
+    
+
+
+    <!-- 作品ヘッダー（タイトル・スペック） -->
+    <header class="detail-header">
+      <div class="detail-title-group">
+        <h2 class="detail-title">NOTEBOOK</h2>
+        <p class="detail-subtitle">都市に補助線を引く</p>
+      </div>
+
+      <div class="detail-meta">
+        <dl>
+          <dt>TYPE</dt><dd>Design Studio/設計課題</dd>
+          <dt>TIME</dt><dd>2024 Spring /3年前期(7 Weeks)</dd>
+          <dt>INSTRUCTOR</dt><dd>Motoki YASUHARA/安原幹, Ryu Mitarai/御手洗龍</dd>
+          <dt>CREDITS</dt><dd>Individual Work</dd>
+        </dl>
+      </div>
+    </header>
+
+
+
+
+    <!-- ステートメント・説明文 -->
+    <section class="detail-description">
+      <p>
+        都市の密度の隙間に介入する小住宅の計画。
+        内部と外部の境界を透過性の高い皮膜で可視化し、住むことと都市のスケールを緩やかにつなぐスタディ。
+      </p>
+    </section>
+
+
+
+
+
+
+
+
+
+    <!-- ギャラリー（写真・図面・文章） -->
+    <section class="detail-gallery">
+
+
+      <!-- 画像 1 -->
+<div class="gallery-item">
+  <video src="images/NOTEBOOK.mp4" autoplay loop muted playsinline></video>
+</div>
+
+    <!-- 画像 2-->
+      <div class="gallery-item">
+        <img src="images/THEATER_2.jpg" alt="Exterior View">
+      </div>
+
+
+      <!-- キャプション／挿入テキスト -->
+      <p class="gallery-text">
+        概念図および初期スケッチ。敷地周辺の風の通り道と都市コンテクストの抽出からダイアグラムを立ち上げる。
+      </p>
+
+
+
+
+    
+
+
+
+
+
+
+
+    </section>
+
+  </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <!--触る必要なし-->
+
+  <!-- 固定フッター -->
+  <footer class="site-footer">
+    <div class="footer-left">
+      <span class="copyright-text">© 2026 KAI MATSUMOTO</span>
+    </div>
+    <div class="footer-right">
+      <a href="mailto:kai1801km@gmail.com" class="contact-link">@gmail.com</a>
+      <a href="https://instagram.com/your_account" target="_blank" rel="noopener" class="contact-link">INSTAGRAM</a>
+    </div>
+  </footer>
+
+
+  
+
+  <!-- ABOUT ポップアップ (モーダル) -->
+  <div id="about-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" id="close-about">CLOSE [✕]</button>
+      
+      <div class="about-inner">
+        <h2>ABOUT</h2>
+        <p class="about-statement">
+          建築と都市の境界、空間の解像度を探求するプロファイルテキスト。
+          （ここに設計思想やステートメントを自由に入力できます）
+        </p>
+        
+        <div class="about-cv">
+          <h3>BIOGRAPHY / CV</h3>
+          <ul>
+            <li><span>2026 —</span> Independent Practice</li>
+            <li><span>2024 —</span> Master of Architecture</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript（ABOUTモーダル開閉 & 動画再生補正） -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const aboutBtn = document.querySelector('a[href="#about"]');
+      const aboutModal = document.getElementById('about-modal');
+      const closeAboutBtn = document.getElementById('close-about');
+
+      if (aboutBtn && aboutModal) {
+        aboutBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          aboutModal.classList.add('is-open');
+        });
+        if (closeAboutBtn) {
+          closeAboutBtn.addEventListener('click', () => {
+            aboutModal.classList.remove('is-open');
+          });
+        }
+        aboutModal.addEventListener('click', (e) => {
+          if (e.target === aboutModal) aboutModal.classList.remove('is-open');
+        });
+      }
+    });
+
+    window.addEventListener('pageshow', () => {
+      const videos = document.querySelectorAll('video');
+      videos.forEach(video => {
+        video.play().catch(error => {
+          console.log("Video play failed:", error);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
